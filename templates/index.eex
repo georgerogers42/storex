@@ -1,0 +1,9 @@
+<!doctype html>
+<html>
+    <head>
+        <title>Hello <%= who %>!</title>
+    </head>
+    <body>
+        <h1>Hello <%= who %>!</h1>
+    </body>
+</html>

@@ -3,6 +3,7 @@ defmodule Storex.Mixfile do
 
   def project do
     [app: :storex,
+     escript: escript,
      version: "0.0.1",
      elixir: "~> 1.2",
      build_embedded: Mix.env == :prod,
@@ -10,11 +11,15 @@ defmodule Storex.Mixfile do
      deps: deps]
   end
 
+  def escript do
+    [main_module: Storex]
+  end
   # Configuration for the OTP application
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger]]
+    [applications: [:logger, :postgrex, :cowboy],
+     mod: {Storex, []}]
   end
 
   # Dependencies can be Hex packages:
@@ -27,6 +32,7 @@ defmodule Storex.Mixfile do
   #
   # Type "mix help deps" for more examples and options
   defp deps do
-    []
+    [{:cowboy, "~> 1.0.0"},
+     {:postgrex, "~> 0.11.0"}]
   end
 end

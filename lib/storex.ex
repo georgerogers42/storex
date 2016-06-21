@@ -1,0 +1,2 @@
+defmodule Storex do
+end

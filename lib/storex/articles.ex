@@ -4,6 +4,14 @@ defmodule Storex.Articles do
     GenServer.start_link(__MODULE__, [], [name: __MODULE__])
   end
 
+  def articles do
+    GenServer.call(__MODULE__, :articles)
+  end
+
+  def article(slug) do
+    GenServer.call(__MODULE__, {:article, slug})
+  end
+  
   defstruct article_list: [], article_map: %{}
   
   def init([]) do
@@ -18,13 +26,13 @@ defmodule Storex.Articles do
   end
 
   defp load_articles(dir \\ "articles") do
-    article_list = File.ls!(dir) |> Stream.filter(&Regex.match(~r(\.html$), &1)) |> Enum.map(&load_article/1)
+    article_list = File.ls!(dir) |> Stream.filter(&Regex.match?(~r(\.html$), &1)) |> Enum.map(&load_article(dir, &1))
     %Storex.Articles{article_list: article_list, article_map: article_map(article_list)}
   end
-  defp load_article(fname) do
-    [meta|content] = File.stream!(fname) |> Stream.chunk_by(&(&1 === "\n")) |> Enum.to_list
+  defp load_article(dir, fname) do
+    [meta|content] = File.stream!(dir <> "/" <> fname) |> Stream.chunk_by(&(&1 === "\n")) |> Enum.to_list
     {:ok, mdata} = Poison.decode(meta)
-    %{ mdata | "contents" => content}
+    Map.put(mdata, "contents", content)
   end
   defp article_map(lst) do
     Stream.map(lst, &{Map.fetch!(&1, "slug"), &1}) |> Enum.into(%{})

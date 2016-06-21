@@ -1,9 +1,17 @@
 <!doctype html>
 <html>
     <head>
-        <title>Hello <%= who %>!</title>
+        <title>Hello World</title>
     </head>
     <body>
-        <h1>Hello <%= who %>!</h1>
+        <h1 class="masthead"><a href="/">Georgerogers42</a></h1>
+        <div class="articles">
+            <%= for article <- articles do %>
+                <div class="article">
+                    <h1><a href="/article/<%= article["slug"] %>"><%= article["title"] %></a></h1>
+                    <%= article["contents"] %>
+                </div>
+            <% end %>
+        </div>
     </body>
 </html>

@@ -18,7 +18,7 @@ defmodule Storex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :postgrex, :cowboy],
+    [applications: [:logger, :cowboy],
      mod: {Storex, []}]
   end
 

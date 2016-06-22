@@ -26,7 +26,7 @@ defmodule Storex.Articles do
   end
 
   defp load_articles(dir \\ "articles") do
-    article_list = File.ls!(dir) |> Stream.filter(&Regex.match?(~r(\.html$), &1)) |> Enum.map(&load_article(dir, &1))
+    article_list = File.ls!(dir) |> Stream.filter(&Regex.match?(~r(\.html$), &1)) |> Enum.map(&load_article(dir, &1)) |> Enum.sort_by(&Map.fetch!(&1, "date"), &(&1 > &2))
     %Storex.Articles{article_list: article_list, article_map: article_map(article_list)}
   end
   defp load_article(dir, fname) do

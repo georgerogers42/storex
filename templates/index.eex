@@ -1,6 +1,7 @@
 <!doctype html>
 <html>
     <head>
+        <link rel="stylesheet" href="/static/css/lmr/stylesheet.css">
         <link rel="stylesheet" href="/static/css/style.css">
         <title>Hello World</title>
     </head>

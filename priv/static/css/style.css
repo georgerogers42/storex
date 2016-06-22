@@ -1,0 +1,17 @@
+body {
+    font-family: "Droid Serif", serif;
+    width: 6.5in;
+    margin: auto;
+    margin-top: 1in;
+    margin-bottom: 1in;
+    font-size: 14pt;
+}
+
+h1 {
+    font-size: 20pt;
+}
+
+h1.masthead {
+    font-size: 72pt;
+}
+

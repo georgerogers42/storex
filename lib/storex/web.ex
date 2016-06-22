@@ -7,7 +7,8 @@ defmodule Storex.Web do
     p = port
     routes = [{:'_',
                [{"/", Storex.Route.Index, []},
-                {"/article/:slug", Storex.Route.Article, []}]}]
+                {"/article/:slug", Storex.Route.Article, []},
+                {"/static/[...]", :cowboy_static, {:priv_dir, :storex, "static"}}]}]
     dispatch = :cowboy_router.compile(routes)
     res = :cowboy.start_http(:storex, 100, [port: p], [env: [dispatch: dispatch]])
     log(:info, "Listening on port: " <> to_string p)

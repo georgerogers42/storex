@@ -5,6 +5,7 @@ body {
     margin-top: 1in;
     margin-bottom: 1in;
     font-size: 14pt;
+    text-align: justify;
 }
 
 h1, h2, h3, h4, h5, h6 {

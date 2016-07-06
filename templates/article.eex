@@ -1,0 +1,37 @@
+<!doctype html>
+<html>
+    <head>
+        <meta lang="en_US" charset="UTF-8">
+        <link rel="stylesheet" href="/static/css/lmr/stylesheet.css">
+        <link rel="stylesheet" href="/static/css/style.css">
+        <title>Georgerogers42</title>
+    </head>
+    <body>
+        <h1 class="masthead"><a href="/">Georgerogers42</a></h1>
+        <div class="articles">
+            <div class="article">
+                <h1 class="article-title"><a href="/article/<%= article["slug"] %>#disqus_thread"><%= article["title"] %></a></h1>
+                <h2 class="article-info"><%= article["author"] %>&mdash;<%= article["date"] %></h2>
+                <div class="article-contents">
+                    <%= article["contents"] %>
+                </div>
+                <div id="disqus_thread"></div>
+                <script>
+    var disqus_config = function () {
+        this.page.url = "/<%= article["slug"] %>";
+        this.page.identifier = "<%= article["slug"] %>";
+    };
+    (function() {  // DON'T EDIT BELOW THIS LINE
+        var d = document, s = d.createElement('script');
+        
+        s.src = '//georgerogers42-herokuapp.disqus.com/embed.js';
+        
+        s.setAttribute('data-timestamp', +new Date());
+        (d.head || d.body).appendChild(s);
+    })();
+</script>
+<noscript>Please enable JavaScript to view the <a href="https://disqus.com/?ref_noscript" rel="nofollow">comments powered by Disqus.</a></noscript>
+            </div>
+        </div>
+    </body>
+</html>

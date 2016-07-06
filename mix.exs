@@ -18,7 +18,7 @@ defmodule Storex.Mixfile do
   #
   # Type "mix help compile.app" for more information
   def application do
-    [applications: [:logger, :cowboy],
+    [applications: [:logger, :timex, :cowboy],
      mod: {Storex, []}]
   end
 
@@ -33,6 +33,7 @@ defmodule Storex.Mixfile do
   # Type "mix help deps" for more examples and options
   defp deps do
     [{:cowboy, "~> 1.0.0"},
+     {:timex, "~> 2.2.1"},
      {:poison , "~> 2.2.0"}]
   end
 end

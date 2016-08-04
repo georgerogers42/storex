@@ -29,8 +29,9 @@ defmodule Storex.Articles do
 
   defp load_articles(dir \\ "articles") do
     article_list = File.ls!(dir) |> Stream.filter(&Regex.match?(~r(\.html$), &1)) |> Enum.map(&load_article(dir, &1)) |> Enum.sort(&Timex.after?(Map.fetch!(&1, "posted"), Map.fetch!(&2, "posted")))
-    %Storex.Articles{article_list: article_list, article_map: article_map(article_list)}
+    %Storex.Articles{article_list: article_list, article_map: article_map article_list}
   end
+  
   defp load_article(dir, fname) do
     [meta|content] = File.stream!(dir <> "/" <> fname) |> Stream.chunk_by(&(&1 === "\n")) |> Enum.to_list
     {:ok, mdata} = Poison.decode(meta)

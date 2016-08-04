@@ -34,7 +34,7 @@ defmodule Storex.Articles do
   defp load_article(dir, fname) do
     [meta|content] = File.stream!(dir <> "/" <> fname) |> Stream.chunk_by(&(&1 === "\n")) |> Enum.to_list
     {:ok, mdata} = Poison.decode(meta)
-    mdata = Map.put(mdata, "contents", content)
+    mdata = Map.put(mdata, "contents", to_string content)
     mdata = Map.put(mdata, "posted", Timex.parse!(Map.fetch!(mdata, "date"), "{ISO:Extended}"))
   end
   defp article_map(lst) do

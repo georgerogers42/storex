@@ -1,17 +1,17 @@
 defmodule Storex.Route.Article do
   require EEx
-  def init(_type, req, args) do
-    {:ok, req, args}
+  def init(_type, req, view) do
+    {:ok, req, view}
   end
-  def handle(req, state) do
+  def handle(req, view) do
     {slug, req} = :cowboy_req.binding(:slug, req)
     {:ok, article} = Storex.Articles.article(slug)
-    result = template(article)
+    result = view.template(article)
     {:ok, req} = :cowboy_req.reply(200, [{"document-type", "text/html"}], result, req)
-    {:ok, req, state}
+    {:ok, req, view}
   end
   def terminate(_reason, _req, _state) do
     :ok
   end
-  EEx.function_from_file :defp, :template, "templates/article.eex", [:article]
+  EEx.function_from_file :def, :template, "templates/article.eex", [:article]
 end

@@ -4,8 +4,8 @@ defmodule Storex.Web do
     String.to_integer(System.get_env("PORT") || default)
   end
   def routes do
-    [{"/", Storex.Route.Index, []},
-     {"/article/:slug", Storex.Route.Article, []},
+    [{"/", Storex.Route.Index, Storex.Route.Index},
+     {"/article/:slug", Storex.Route.Article, Storex.Route.Article},
      {"/static/[...]", :cowboy_static, {:priv_dir, :storex, "static"}}]
   end
   def start_link do

@@ -27,7 +27,7 @@ defmodule Storex.Articles do
     {:reply, Map.fetch(state.article_map, name), state}
   end
 
-  def code_change(_vsn, state, _extra) do
+  def code_change(_vsn, _state, _extra) do
     articles = load_articles
     {:ok, articles}
   end

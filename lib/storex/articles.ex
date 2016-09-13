@@ -27,6 +27,11 @@ defmodule Storex.Articles do
     {:reply, Map.fetch(state.article_map, name), state}
   end
 
+  def code_change(_vsn, state, _extra) do
+    articles = load_articles
+    {:ok, articles}
+  end
+  
   defp load_articles(dir \\ "articles") do
     article_list = File.ls!(dir) |> Stream.filter(&Regex.match?(~r(\.html$), &1)) |> Enum.map(&load_article(dir, &1)) |> Enum.sort(&Timex.after?(Map.fetch!(&1, "posted"), Map.fetch!(&2, "posted")))
     %Storex.Articles{article_list: article_list, article_map: article_map article_list}

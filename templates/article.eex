@@ -4,7 +4,7 @@
         <meta lang="en_US" charset="UTF-8">
         <link rel="stylesheet" href="/static/css/lmr/stylesheet.css">
         <link rel="stylesheet" href="/static/css/style.css">
-        <title>Georgerogers42</title>
+        <title>Georgerogers42/<%= article["slug"] %></title>
     </head>
     <body>
         <h1 class="masthead"><a href="/">Georgerogers42</a></h1>

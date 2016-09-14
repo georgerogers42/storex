@@ -5,7 +5,9 @@ defmodule Storex.Web do
   end
   def routes do
     [{"/", Storex.Route.Index, Storex.Route.Index},
-     {"/feed.json", Storex.Route.Index, Storex.Feed},
+     {"/json/", Storex.Route.Index, Storex.Feed},
+     {"/json/:slug", Storex.Route.Article, Storex.Feed},
+     {"/article/", Storex.Route.Index, Storex.Route.Index},
      {"/article/:slug", Storex.Route.Article, Storex.Route.Article},
      {"/static/[...]", :cowboy_static, {:priv_dir, :storex, "static"}}]
   end

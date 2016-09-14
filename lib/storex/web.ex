@@ -1,7 +1,7 @@
 defmodule Storex.Web do
   import Logger
-  def port(default \\ "8080") do
-    String.to_integer(System.get_env("PORT") || default)
+  def port do
+    String.to_integer(System.get_env("PORT") || "8080")
   end
   def routes do
     [{"/", Storex.Route.Index, Storex.Route.Index},
